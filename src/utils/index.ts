@@ -1,0 +1,2 @@
+export const parseText = ( text : string ) => text.substr(0, 1).toUpperCase() + text.substr(1, text.length)
+export const cutText = ( text : string ) => text.length > 95 ? text.substr(0, 95) + "..." : text;
