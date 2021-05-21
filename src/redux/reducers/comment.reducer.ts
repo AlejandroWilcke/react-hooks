@@ -2,13 +2,18 @@ import { SET_COMMENTS, ADD_COMMENT } from '../actions/comment.action';
 
 //I wanted the comments to stay alive at refresh.
 
-const getStoredComments = (postId) => {
+const storedComments = JSON.parse( localStorage.getItem('comments') );
+
+let commentId : number = storedComments ? storedComments[storedComments.length - 1].id + 1 : 500;
+
+const getStoredComments = ( postId: number ) => {
+	
 	let commentsInStorage = JSON.parse(localStorage.getItem("comments")) || [];
 			
 	let previousComments = [];
 
 	commentsInStorage.forEach( comment => {
-		if( comment.postId == postId){
+		if( comment.postId === postId){
 			previousComments.push(comment)
 		}
 	})
@@ -17,9 +22,11 @@ const getStoredComments = (postId) => {
 }
 
 const createComment = (postId, comment) => {
-	let newComment = {
+	
+	let newComment = 
+	{
 		postId,
-		id: 500,
+		id: commentId,
 		name: "Patagonian",
 		email: "patagonian@patagonian.it",
 		body: comment
@@ -27,6 +34,8 @@ const createComment = (postId, comment) => {
 
 	let commentsInStorage = JSON.parse(localStorage.getItem("comments")) || [];
 	localStorage.setItem(`comments`, JSON.stringify([...commentsInStorage, newComment]))
+
+	commentId++;
 
 	return newComment;
 }

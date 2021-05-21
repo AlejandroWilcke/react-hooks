@@ -2,18 +2,20 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Card, Accordion, Pagination } from 'react-bootstrap';
 
-import { IPostsState, IPost } from '../ts/interfaces/post.interface';
-import { SET_POSTS } from '../redux/actions/post.action';
-import { SET_COMMENTS } from '../redux/actions/comment.action';
-import { getPosts } from '../data/Posts';
-import { getCommentsFromPost } from '../data/Comments';
-import { parseText } from '../utils';
+import { IPostsState, IPost } from '../../ts/interfaces/post.interface';
+import { SET_POSTS } from '../../redux/actions/post.action';
+import { SET_COMMENTS } from '../../redux/actions/comment.action';
+import { getPosts } from '../../data/Posts';
+import { getCommentsFromPost } from '../../data/Comments';
+import { parseText } from '../../utils';
+import { Title } from '../general';
+import { Container } from './PostsStyle';
 
 const PostsList = () => {
 	
 	const posts : any = useSelector<IPostsState>(state => state.posts);
+	const postsPerPage = 5;
 	const [actualPage, setActualPage] = useState(1)
-	const [postsPerPage, setPostsPerPage] = useState(5)
 	const [postsToSkip, setPostsToSkip] = useState(0)
 	
 	const dispatch = useDispatch();
@@ -70,7 +72,8 @@ const PostsList = () => {
 	}
 
 	return(
-			<div style={{width:"40%"}}>
+			<Container>
+				<Title>Posts</Title>
 				<Accordion>
 					{ posts.length > 0 && posts.slice(postsToSkip, postsPerPage + postsToSkip).map( ( post: IPost, i: number ) => {
 							return(
@@ -96,7 +99,7 @@ const PostsList = () => {
 						<Pagination.Last className="pagination" onClick={ () => lastPage()}/>
 					</Pagination>
 				</div>
-			</div>
+			</Container>
 	)
 }
 

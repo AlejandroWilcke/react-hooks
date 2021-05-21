@@ -14,12 +14,27 @@ body{
     height: 100%;
 }
 
+.fadeIn{
+    animation-name: fadeIn;
+    animation-duration: 1s;
+}
+
+@keyframes fadeIn {
+    from { 
+        opacity: 0%;
+    }
+    to { 
+        opacity: 100%;
+    }
+}
+
 .borderWhite{
     border: 1px solid white;
 }
 
 .responsiveCard{
     width: auto;
+    
     font-size: 0.8vw;
 }
 
@@ -27,11 +42,11 @@ body{
     background-color: transparent;
     width: 60%;
     border-radius: 20px;
-    margin-left: 10px;
     outline: none;
     padding: 5px 5px 5px 5px;
     margin-top: -10px;
     margin-right: 10px;
+    margin-left: 10px;
     color: white;
 }
 
