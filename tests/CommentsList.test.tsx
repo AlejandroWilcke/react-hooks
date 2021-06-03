@@ -20,8 +20,4 @@ describe("<CommentsList/>", () => {
         let comments : [IComment] = await getCommentsFromPost("1");
         expect(comments.length).toBeGreaterThan(0);
     })
-    it("should update comment state when Sent", async () => {
-        const { result } = renderHook(() => CommentsList())
-        console.log(result.current)
-    })
 })
