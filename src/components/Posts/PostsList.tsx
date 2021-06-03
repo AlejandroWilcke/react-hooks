@@ -21,7 +21,13 @@ const PostsList = () => {
 	const dispatch = useDispatch();
 
 	useEffect( () => {
-		( async () => dispatch( { type: SET_POSTS, payload: await getPosts() } ) )()
+		( async () => {
+			try{
+				dispatch( { type: SET_POSTS, payload: await getPosts() } )	
+			}catch(error){
+				dispatch( { type: SET_POSTS, payload: [] } )
+			}
+		})()
 	}, []);
 
 	const setComments = async ( postId : string ) => {
@@ -72,7 +78,7 @@ const PostsList = () => {
 	}
 
 	return(
-			<Container>
+			<Container data-testid={"PostsList"}>
 				<Title>Posts</Title>
 				<Accordion>
 					{ posts.length > 0 && posts.slice(postsToSkip, postsPerPage + postsToSkip).map( ( post: IPost, i: number ) => {

@@ -6,7 +6,7 @@ const Main = () => {
 	return(
 		<Container>
 			<ContentWrapper className="fadeIn">
-				<PostsList/>
+				<PostsList />
 				<CommentsList/>
 			</ContentWrapper>
 		</Container>
