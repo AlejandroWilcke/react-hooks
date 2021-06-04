@@ -3,6 +3,11 @@
 npm install
 ```
 
+# Tests (Jest)
+```
+npm t
+```
+
 # Run
 ```
 npm start
